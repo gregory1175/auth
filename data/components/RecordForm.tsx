@@ -34,10 +34,10 @@ function RecordForm({
     const { name, value } = e.target;
 
     if (name === "companySigDate" || name === "employeeSigDate") {
-      const date = parseISO(value);
+      const date = new Date(value);
       setFormData({
         ...formData,
-        [name]: isValid(date) ? formatISO(date) : "",
+        [name]: date.toISOString(),
       });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -50,11 +50,10 @@ function RecordForm({
       onClose();
     }
   };
-
   const formatDateForDisplay = (dateString: string) => {
     try {
-      const date = parseISO(dateString);
-      return isValid(date) ? format(date, "yyyy-MM-dd'T'HH:mm") : "";
+      const date = new Date(dateString);
+      return format(date, "yyyy-MM-dd'T'HH:mm");
     } catch {
       return "";
     }

@@ -1,4 +1,4 @@
-import { FormDataInterface } from "../types/types";
+import { FormDataType } from "../types/types";
 import { DATE_REGEX } from "../constants/constants";
 import { isValid, parseISO } from "date-fns";
 
@@ -6,7 +6,7 @@ export const isValidDate = (date: string): boolean => DATE_REGEX.test(date);
 export const isRequired = (value: string): boolean => value.trim() !== "";
 
 export const validateForm = (
-  formData: FormDataInterface,
+  formData: FormDataType,
   setErrors: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>
 ) => {
   const newErrors: { [key: string]: string } = {};
